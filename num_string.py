@@ -1,4 +1,4 @@
-names = dict([(0, 'ZERO'),
+NAMES = dict([(0, 'ZERO'),
               (1, 'ONE'),
               (2, 'TWO'),
               (3, 'THREE'),
@@ -31,59 +31,59 @@ names = dict([(0, 'ZERO'),
 
 def text_from_num(cents):
     if (cents <= 0) or (cents > 99999999):
-        raise(ValueError('invalid input'))
+        raise ValueError('invalid input')
     num = int(cents)
     sb = []
     val = num - ((num // 100) * 100)
-    if val in names:
-        sb.append(names[val])
+    if val in NAMES:
+        sb.append(NAMES[val])
     else:
         tens = (val // 10) * 10
         ones = val - tens
-        sb.append(names[ones])
-        sb.append(names[tens])  
+        sb.append(NAMES[ones])
+        sb.append(NAMES[tens])
     sb.append('AND')
-    
+
     num = num // 100
     val = num - ((num // 100) * 100)
-    if val in names:
-        sb.append(names[val])
+    if val in NAMES:
+        sb.append(NAMES[val])
     else:
         tens = (val // 10) * 10
         ones = val - tens
-        sb.append(names[ones])
-        sb.append(names[tens])
-        
+        sb.append(NAMES[ones])
+        sb.append(NAMES[tens])
+
     num = num // 100
     val = num - ((num // 10) * 10)
-    if (val > 0):
-        if sb[len(sb)-1] == names[0]:
+    if val > 0:
+        if sb[len(sb)-1] == NAMES[0]:
             sb.pop()
-        sb.append(names[100])
-        sb.append(names[val])
-        
+        sb.append(NAMES[100])
+        sb.append(NAMES[val])
+
     num = num // 10
-    if (num > 0):
-        if sb[len(sb)-1] == names[0]:
-            sb.pop()        
-        sb.append(names[1000])
-        
+    if num > 0:
+        if sb[len(sb)-1] == NAMES[0]:
+            sb.pop()
+        sb.append(NAMES[1000])
+
         val = num - ((num // 100) * 100)
-        if val in names:
-            sb.append(names[val])
+        if val in NAMES:
+            sb.append(NAMES[val])
         else:
             tens = (val // 10) * 10
             ones = val - tens
-            sb.append(names[ones])
-            sb.append(names[tens])        
-        
+            sb.append(NAMES[ones])
+            sb.append(NAMES[tens])
+
         num = num // 100
-        if (num > 0):
-            if sb[len(sb)-1] == names[0]:
+        if num > 0:
+            if sb[len(sb)-1] == NAMES[0]:
                 sb.pop()
-            sb.append(names[100])    
-            sb.append(names[num])    
-            
+            sb.append(NAMES[100])
+            sb.append(NAMES[num])
+
     return ' '.join(sb[::-1])
 
 

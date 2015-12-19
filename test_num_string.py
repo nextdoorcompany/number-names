@@ -1,7 +1,7 @@
 import pytest
 import num_string
 
-@pytest.mark.parametrize('input,expected', [    
+@pytest.mark.parametrize('input,expected', [
     (1, 'ZERO AND ONE'),
     (12, 'ZERO AND TWELVE'),
     (65, 'ZERO AND SIXTY FIVE'),
@@ -33,12 +33,13 @@ import num_string
 def test_standard(input, expected):
     result = num_string.text_from_num(input)
     print(result)
-    assert(result == expected)
-    
+    assert result == expected
+
 def test_lower_bound():
     with pytest.raises(ValueError):
         num_string.text_from_num(0)
-        
+
 def test_upper_bound():
     with pytest.raises(ValueError):
-        num_string.text_from_num(100000000)    
+        num_string.text_from_num(100000000)
+        
